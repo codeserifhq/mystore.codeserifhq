@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Address extends Model
+class Address extends BaseModel
 {
-    //
+    public function partner() {
+        return $this->belongsTo('App\Models\Partner');
+    }
 }

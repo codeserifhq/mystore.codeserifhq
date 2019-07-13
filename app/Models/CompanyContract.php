@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class CompanyContract extends Model
+class CompanyContract extends BaseModel
 {
     //
+
+    public function company() {
+        return $this->belongsTo('App\Models\Company');
+    }
 }

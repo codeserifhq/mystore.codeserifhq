@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Contact extends Model
+class Contact extends BaseModel
 {
-    //
+    public function partner() {
+        return $this->belongsTo('App\Models\Partner');
+    }
 }

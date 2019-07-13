@@ -2,9 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class PermissionSection extends Model
+class PermissionSection extends BaseModel
 {
-    //
+    public function permissionModules() {
+        return $this->hasMany('App\Models\PermissionModule');
+    }
+
+    public function permissions() {
+        return $this->hasManyThrough('App\Models\Permission', 'App\Models\PermissionModule');    
+    }
+    
 }

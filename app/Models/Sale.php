@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class Sale extends Model
+class Sale extends BaseModel
 {
-    //
+    public function stockOutbounds() {
+        return $this->hasMany('App\Models\StockOutbound', 'sale_id');
+    }
 }

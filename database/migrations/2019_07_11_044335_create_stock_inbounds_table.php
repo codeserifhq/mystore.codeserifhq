@@ -18,11 +18,12 @@ class CreateStockInboundsTable extends Migration
 
             $table->integer('supplier_id')->unsigned();
             $table->integer('stock_in_by')->unsigned();
-            $table->integer('stock_outbound_branch')->unsigned(); //if from branch
-            $table->integer('stock_outbound_id')->unsigned(); //if from branch
+            $table->integer('stock_in_branch_id')->unsigned(); //what branch received the inbound
+            $table->integer('stock_outbound_id')->unsigned(); //if from a stockoutbound
 
             $table->foreign('supplier_id')->references('id')->on('partners');
             $table->foreign('stock_in_by')->references('id')->on('partners');
+            $table->foreign('stock_in_branch_id')->references('id')->on('branches');
 
             $table->string('receipt_no');
             $table->date('receipt_date');
