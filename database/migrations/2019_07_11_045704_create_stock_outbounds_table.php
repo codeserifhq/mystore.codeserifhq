@@ -18,7 +18,7 @@ class CreateStockOutboundsTable extends Migration
 
             $table->bigInteger('sale_id')->unsigned(); //if sale
             $table->integer('stock_out_by')->unsigned();
-            $table->integer('branch_id')->unsigned();
+            $table->integer('branch_id')->unsigned(); //branch that produced this outbound
 
             $table->foreign('stock_out_by')->references('id')->on('partners');
             $table->foreign('branch_id')->references('id')->on('branches');

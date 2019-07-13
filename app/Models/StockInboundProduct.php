@@ -2,9 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class StockInboundProduct extends Model
+class StockInboundProduct extends BaseModel
 {
-    //
+    public function stockInbound() {
+        return $this->belongsTo('App\Models\StockInbound');
+    }
+
+    public function product() {
+        return $this->belongsTo('App\Models\Product');
+    }
 }

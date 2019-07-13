@@ -4,6 +4,11 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Models\Department;
+use App\Models\JobPosition;
+
+use App\Observers\SystemCodeObserver;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Department::observe(SystemCodeObserver::class);
+        JobPosition::observe(SystemCodeObserver::class);
     }
 }

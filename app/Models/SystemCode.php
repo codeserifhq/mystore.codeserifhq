@@ -2,9 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
-class SystemCode extends Model
+use App\Enums\SystemCodeTypeEnum;
+
+class SystemCode extends BaseModel
 {
-    //
+    protected $table='system_codes';
+    
+    public static function jobs() {
+        return self::where('type', SystemCodeTypeEnum::JOB_POSITION);
+    }
+
+    public static function departments() {
+        return self::where('type', SystemCodeTypeEnum::DEPARTMENT);
+    }
 }
