@@ -6,7 +6,13 @@ use App\Models\BaseModel;
 
 class Partner extends BaseModel
 {
-    //
+    protected $table = 'partners';
+    protected $type;
+
+    public function getType() {
+        return $type;
+    }
+
     public function user() {
         return $this->belongsTo('App\Models\User');
     }
@@ -45,5 +51,13 @@ class Partner extends BaseModel
 
     public function stockOutbounds() {
         return $this->hasMany('App\Models\StockOutbound', 'stock_out_by');
+    }
+    
+    public function companyInternal() {
+        return $this->belongsTo('App\Models\Partner', 'company_id_internal');
+    }
+
+    public function company() {
+        return $this->belongsTo('App\Models\Company');
     }
 }

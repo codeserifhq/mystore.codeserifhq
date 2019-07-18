@@ -17,10 +17,13 @@ class CreateSystemCodesTable extends Migration
             $table->bigIncrements('id');
             
             $table->integer('type')->unsigned();
+            $table->integer('company_id')->unsigned();
+
+            $table->foreign('company_id')->references('id')->on('companies');
             
             $table->string('name');
             $table->mediumText('description')->nullable();
-
+            
             $table->timestamps();
         });
     }

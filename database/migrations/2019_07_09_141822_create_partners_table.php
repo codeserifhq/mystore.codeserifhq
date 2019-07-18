@@ -18,7 +18,8 @@ class CreatePartnersTable extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('company_id')->unsigned();
+            $table->integer('company_id')->unsigned(); //for subscribed company
+            $table->integer('company_id_internal')->unsigned()->nullable(); //for internal transactions 
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('department_id')->unsigned()->nullable();
             $table->integer('manager_id')->unsigned()->nullable();

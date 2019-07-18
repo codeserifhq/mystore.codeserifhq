@@ -28,7 +28,7 @@ class CreateStockInboundsTable extends Migration
             $table->string('receipt_no');
             $table->date('receipt_date');
             $table->dateTime('inbound_date');
-            $table->date('expiration_date');
+
             $table->string('remarks')->nullable();
 
             $table->timestamps();

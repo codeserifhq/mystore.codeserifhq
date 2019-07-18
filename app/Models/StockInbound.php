@@ -22,4 +22,8 @@ class StockInbound extends BaseModel
     public function products() {
         return $this->belongsToMany('App\Models\Product', StockInboundProduct::getTableName(), 'stock_inbound_id', 'product_id');
     }
+
+    public function stockOutbound() {
+        return $this->belongsTo('App\Models\StockOutbound', 'stock_outbound_id');
+    }
 }

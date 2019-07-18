@@ -99,7 +99,7 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                // 'example_query' => ExampleQuery::class,
+                'users' => \App\GraphQL\Query\UserQuery::class,
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
@@ -119,8 +119,39 @@ return [
     // ]
     //
     'types' => [
-        // 'example'           => ExampleType::class,
-        // 'relation_example'  => ExampleRelationType::class,
+        'userAggregationType'              => \App\GraphQL\Type\UserAggregationType::class,
+        'permissionAggregationType'        => \App\GraphQL\Type\PermissionAggregationType::class,
+        'companyAggregationType'           => \App\GraphQL\Type\CompanyAggregationType::class,
+        'partnerAggregationType'           => \App\GraphQL\Type\PartnerAggregationType::class,
+        'permissionModuleAggregationType'  => \App\GraphQL\Type\PermissionModuleAggregationType::class,
+        'permissionSectionAggregationType' => \App\GraphQL\Type\PermissionSectionAggregationType::class,
+        'departmentAggregationType'        => \App\GraphQL\Type\DepartmentAggregationType::class,
+        'jobAggregationType'               => \App\GraphQL\Type\JobAggregationType::class,
+        'contactAggregationType'           => \App\GraphQL\Type\ContactAggregationType::class,
+        'addressAggregationType'           => \App\GraphQL\Type\AddressAggregationType::class,
+        'stockInboundAggregationType'      => \App\GraphQL\Type\StockInboundAggregationType::class,
+        'stockOutboundAggregationType'     => \App\GraphQL\Type\StockOutboundAggregationType::class,
+        'branchAggregationType'            => \App\GraphQL\Type\BranchAggregationType::class,
+        'saleAggregationType'              => \App\GraphQL\Type\SaleAggregationType::class,
+        'productAggregationType'           => \App\GraphQL\Type\ProductAggregationType::class,
+        'productCategoryAggregationType'   => \App\GraphQL\Type\ProductCategoryAggregationType::class,
+        'productCategory'                  => \App\GraphQL\Type\ProductCategoryType::class,
+        'product'                          => \App\GraphQL\Type\ProductType::class,
+        'productCustomProperty'            => \App\GraphQL\Type\ProductCustomPropertyType::class,
+        'sale'                             => \App\GraphQL\Type\SaleType::class,
+        'stockOutbound'                    => \App\GraphQL\Type\StockOutboundType::class,
+        'branch'                           => \App\GraphQL\Type\BranchType::class,
+        'stockInbound'                     => \App\GraphQL\Type\StockInboundType::class,
+        'contact'                          => \App\GraphQL\Type\ContactType::class,
+        'address'                          => \App\GraphQL\Type\AddressType::class,
+        'job'                              => \App\GraphQL\Type\JobType::class,
+        'department'                       => \App\GraphQL\Type\DepartmentType::class,
+        'user'                             => \App\GraphQL\Type\UserType::class,
+        'permission'                       => \App\GraphQL\Type\PermissionType::class,
+        'company'                          => \App\GraphQL\Type\CompanyType::class,
+        'partner'                          => \App\GraphQL\Type\PartnerType::class,
+        'permissionSection'                => \App\GraphQL\Type\PermissionSectionType::class,
+        'permissionModule'                 => \App\GraphQL\Type\PermissionModuleType::class, 
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.

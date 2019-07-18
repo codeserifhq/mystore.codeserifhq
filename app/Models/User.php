@@ -66,6 +66,19 @@ class User extends BaseModel implements
     }
 
     public function permissions() {
-        return $this->belongsToMany('App\model\Permission', 'user_permissions', 'user_id', 'permission_id');
+        return $this->belongsToMany('App\Models\Permission', 'user_permissions', 'user_id', 'permission_id');
+    }
+
+    public function can($permissionAlias, $arguments=[]) {
+        if ($this->superadmin) {
+            return true;
+        }
+
+        if($this->permissions->where('alias', $permissionAlias)->first()) {
+            return true;
+        }
+
+        return false;
+        
     }
 }
