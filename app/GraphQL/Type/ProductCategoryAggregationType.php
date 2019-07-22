@@ -11,6 +11,6 @@ class ProductCategoryAggregationType extends BaseAggregationType
         'description' => 'A type'
     ];
 
-    protected $type = 'category';
+    protected $type = 'productCategory';
     protected $description = 'categories';
 }

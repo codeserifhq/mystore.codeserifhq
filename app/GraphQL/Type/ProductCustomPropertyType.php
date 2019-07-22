@@ -8,10 +8,10 @@ use GraphQL;
 
 use App\Model\ProductCustomProperty;
 
-class customPropertyType extends GraphQLType
+class ProductCustomPropertyType extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'customPropertyType',
+        'name' => 'ProductCustomPropertyType',
         'description' => 'A type'
     ];
 

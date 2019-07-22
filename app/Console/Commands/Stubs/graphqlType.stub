@@ -1,0 +1,26 @@
+<?php
+
+namespace App\GraphQL\Type;
+
+use GraphQL\Type\Definition\Type;
+use GraphQL;
+
+use App\Models\{{model}};
+
+use App\GraphQL\Type\BaseType;
+
+class {{type}} extends BaseType
+{
+    protected $attributes = [
+        'name' => '{{type}}',
+        'description' => '{{typeDescription}}',
+        'model' => {{model}}::class
+    ];
+
+    public function fields()
+    {
+        return [
+
+        ];
+    }
+}

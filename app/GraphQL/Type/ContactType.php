@@ -3,6 +3,7 @@
 namespace App\GraphQL\Type;
 
 use Rebing\GraphQL\Support\Type as GraphQLType;
+use GraphQL\Type\Definition\Type;
 use GraphQL;
 
 use App\Models\Contact;

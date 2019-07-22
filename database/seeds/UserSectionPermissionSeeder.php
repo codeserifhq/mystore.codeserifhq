@@ -6,7 +6,7 @@ use App\Models\PermissionSection;
 use App\Models\PermissionModule;
 use App\Models\Permission;
 
-class UserSectionPemissionSeeder extends Seeder
+class UserSectionPermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,12 +21,13 @@ class UserSectionPemissionSeeder extends Seeder
 
         $permissionSection->sequence_number = $sequenceNumber;
         $permissionSection->name = "Users"; 
-        $permission->alias = "users_section";
-        $permission->save();
+        $permissionSection->alias = "users_section";
+        $permissionSection->save();
 
         $permissionModuleSequenceNumber = $permissionSection->permissionModules()->max('sequence_number') + 1;
         
         $permissionModule = new PermissionModule;
+        $permissionModule->permission_section_id = $permissionSection->id; 
         $permissionModule->sequence_number = $permissionModuleSequenceNumber;
         $permissionModule->name = "User Authentication";
         $permissionModule->alias = "user_authentication";
