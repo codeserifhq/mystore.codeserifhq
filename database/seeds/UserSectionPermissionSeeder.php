@@ -6,6 +6,8 @@ use App\Models\PermissionSection;
 use App\Models\PermissionModule;
 use App\Models\Permission;
 
+use App\Enums\UserSectionPermissionAliasEnum;
+
 class UserSectionPermissionSeeder extends Seeder
 {
     /**
@@ -38,7 +40,7 @@ class UserSectionPermissionSeeder extends Seeder
         $viewPermission =  new Permission;
         $viewPermission->permission_module_id = $permissionModule->id;
         $viewPermission->name = "View Users";
-        $viewPermission->alias = "view_users";
+        $viewPermission->alias = UserSectionPermissionAliasEnum::VIEW_USER;
         $viewPermission->sequence_number = $permissionSequenceNumber;
         $viewPermission->save();
 
@@ -47,7 +49,7 @@ class UserSectionPermissionSeeder extends Seeder
         $createPermission =  new Permission;
         $createPermission->permission_module_id = $permissionModule->id;
         $createPermission->name = "Create Users";
-        $createPermission->alias = "create_users";
+        $createPermission->alias = UserSectionPermissionAliasEnum::CREATE_USER;
         $createPermission->sequence_number = $permissionSequenceNumber;
         $createPermission->save();
 
@@ -56,7 +58,7 @@ class UserSectionPermissionSeeder extends Seeder
         $editPermission =  new Permission;
         $editPermission->permission_module_id = $permissionModule->id;
         $editPermission->name = "Edit Users";
-        $editPermission->alias = "edit_users";
+        $editPermission->alias = UserSectionPermissionAliasEnum::EDIT_USER;
         $editPermission->sequence_number = $permissionSequenceNumber;
         $editPermission->save();
 
@@ -65,7 +67,7 @@ class UserSectionPermissionSeeder extends Seeder
         $deletePermission =  new Permission;
         $deletePermission->permission_module_id = $permissionModule->id;
         $deletePermission->name = "Delete Users";
-        $deletePermission->alias = "delete_users";
+        $deletePermission->alias = UserSectionPermissionAliasEnum::DELETE_USER;
         $deletePermission->sequence_number = $permissionSequenceNumber;
         $deletePermission->save();
     }

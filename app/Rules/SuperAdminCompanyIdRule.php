@@ -11,9 +11,10 @@ class SuperAdminCompanyIdRule implements Rule
      *
      * @return void
      */
-    public function __construct()
+    private $args;
+    public function __construct($args)
     {
-        //
+        $this->args = $args;
     }
 
     /**
@@ -28,7 +29,7 @@ class SuperAdminCompanyIdRule implements Rule
         $user = auth()->guard('api')->user();
 
         if ($user) {
-            if (!$user->company_id && !$value) {
+            if (!$user->company_id && !isset($this->args['company_id'])) {
                 return false;   
             }
         }
