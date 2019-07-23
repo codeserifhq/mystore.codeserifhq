@@ -27,4 +27,19 @@ class UserMutator extends BaseMutator implements UserMutatorInterface {
         
         return $model;
     }
+
+    protected function beforeUpdateModelAdjustment($model, $args) {
+        $user = auth()->guard('api')->user();
+
+        if(isset($args['password'])) {
+            $model->password = bcrypt($args['password']);
+        }
+        
+        $userBeingUpdated = User::find($args['id']);
+        if (!$user->superadmin && isset($args['company_id'])) {
+            $model->company_id = $userBeingUpdated->company_id;  //this reverts company_id if a normal user tries to change these user's company_id
+        }
+        
+        return $model;
+    }
 }

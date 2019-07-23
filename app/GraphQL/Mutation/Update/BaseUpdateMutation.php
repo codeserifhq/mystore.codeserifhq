@@ -1,26 +1,26 @@
 <?php
 
-namespace App\GraphQL\Mutation\Insert;
+namespace App\GraphQL\Mutation\Update;
 
 use Rebing\GraphQL\Support\Mutation;
 use GraphQL;
 
-class BaseInsertMutation extends Mutation
+class BaseUpdateMutation extends Mutation
 {
     protected $attributes = [
-        'name' => 'BaseInsertMutation',
+        'name' => 'UpdateMutation',
         'description' => 'A mutation'
     ];
 
+    protected $mutator;
     protected $type;
-    protected $mutator;    
     protected $permissionAlias;
 
     public function authorize(array $args): bool
     {
         return auth()->guard('api')->user()->can($this->permissionAlias);
     }
-
+    
     public function type()
     {
         return GraphQL::type($this->type);
@@ -35,6 +35,7 @@ class BaseInsertMutation extends Mutation
 
     public function resolve($root, $args)
     {
-        return $this->mutator->insertModel($args);
+        $result = $this->mutator->updateModel($args);
+        return $result;
     }
 }

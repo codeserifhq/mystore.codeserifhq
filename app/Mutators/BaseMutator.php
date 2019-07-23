@@ -44,13 +44,17 @@ class BaseMutator implements BaseMutatorInterface{
         }
 
         $model = $this->userUpdateAudit($model);
-
+        $model = $this->beforeUpdateModelAdjustment($model, $args);
         $model->save();
 
         return $model;
     }
 
     protected function userUpdateAudit($model) {
+        return $model;
+    }
+    
+    protected function beforeUpdateModelAdjustment($model, $args) {
         return $model;
     }
 

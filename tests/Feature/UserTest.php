@@ -140,7 +140,71 @@ class UserTest extends TestCase
     }
 
     public function givePermission($user, $permissionAlias) {
-        $user->permissions()->attach(Permission::where('alias', UserSectionPermissionAliasEnum::CREATE_USER)->first()->id);
+        $user->permissions()->attach(Permission::where('alias', $permissionAlias)->first()->id);
         return $user;
+    }
+
+    public function testUserUpdateWithSuperAdminPass() {
+        $company  = factory(Company::class)->create();
+        $user = factory(User::class)->create();
+        
+        $user->company_id = $company->id;
+        $user->save();
+
+        $company2 = factory(Company::class)->create();
+        
+        $response = $this
+            ->withHeaders($this->getAuthorizedHeader())
+            ->json('POST', '/graphql/secret', ['query' => "mutation {
+                updateUser(
+                    id: $user->id,
+                    company_id: $company2->id,
+                    name: \"ephraim\",
+                    email: \"lambarteephraim@gmail.com\",
+                    password: \"password\"
+                    )
+                {id, name, email, company_id}}"]);
+
+        $response = json_decode($response->getContent(), true);
+
+        $this->assertDatabaseHas(User::getTableName(), [
+            'email'      => 'lambarteephraim@gmail.com',
+            'name'       => 'ephraim',
+            'company_id' => $company2->id
+        ]);
+    }
+
+    public function testUserUpdateWithNormallAccPass() {
+        $company  = factory(Company::class)->create();
+        $user = factory(User::class)->create();
+        
+        $user->company_id = $company->id;
+        $user->save();
+
+        $this->givePermission($user, UserSectionPermissionAliasEnum::EDIT_USER);
+
+        $this->userCredentials = $this->loginPassport($this, $user->email, 'password', true);  //change admin acc to normal acc
+
+        $company2 = factory(Company::class)->create();
+        
+        $response = $this
+            ->withHeaders($this->getAuthorizedHeader())
+            ->json('POST', '/graphql/secret', ['query' => "mutation {
+                updateUser(
+                    id: $user->id,
+                    company_id: $company2->id,
+                    name: \"ephraim\",
+                    email: \"lambarteephraim@gmail.com\",
+                    password: \"password\"
+                    )
+                {id, name, email, company_id}}"]);
+
+        $response = json_decode($response->getContent(), true);
+    
+        $this->assertDatabaseHas(User::getTableName(), [
+            'email'      => 'lambarteephraim@gmail.com',
+            'name'       => 'ephraim',
+            'company_id' => $company->id
+        ]);
     }
 }

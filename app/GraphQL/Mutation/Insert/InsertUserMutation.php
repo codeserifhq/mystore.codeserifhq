@@ -3,7 +3,6 @@
 namespace App\GraphQL\Mutation\Insert;
 
 use GraphQL\Type\Definition\Type;
-use App\GraphQL\Mutation\Insert\BaseInsertMutation;
 
 use App\Models\Company;
 use App\Models\User;
@@ -12,6 +11,7 @@ use App\Contracts\Mutators\UserMutatorInterface as UserMutator;
 use App\Rules\SuperAdminCompanyIdRule;
 use App\Rules\UserNameUniqueRule;
 use App\Enums\UserSectionPermissionAliasEnum;
+use App\GraphQL\Mutation\Insert\BaseInsertMutation;
 
 class InsertUserMutation extends BaseInsertMutation
 {
@@ -21,14 +21,10 @@ class InsertUserMutation extends BaseInsertMutation
     ];
 
     protected $type = 'user';
+    protected $permissionAlias = UserSectionPermissionAliasEnum::CREATE_USER;
 
     public function __construct(UserMutator $mutator) {
         $this->mutator = $mutator;
-    }
-
-    public function authorize(array $args): bool
-    {
-        return auth()->guard('api')->user()->can(UserSectionPermissionAliasEnum::CREATE_USER);
     }
 
     public function args()

@@ -13,10 +13,16 @@ class UserNameUniqueRule implements Rule
      * @return void
      */
     private $args;
+    private $exempt = 0;
 
     public function __construct($args)
     {
         $this->args = $args;
+
+        if(isset($args['id'])) {
+            $this->exempt = $args['id'];
+        }
+        
     }
 
     /**
@@ -34,7 +40,10 @@ class UserNameUniqueRule implements Rule
             $companyId = $this->args['company_id'];
         }
 
-        $user = User::where('company_id', $companyId)->where('name', $value)->count();
+        $user = $this->exempt == 0 
+            ? User::where('company_id', $companyId)->where('name', $value)->count()
+            : User::where('company_id', $companyId)->where('name', $value)->where('id', '<>', $this->exempt)->count();
+
 
         if ($user > 0) {
             return false;

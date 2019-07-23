@@ -112,8 +112,9 @@ return [
                 'users' => \App\GraphQL\Query\UserQuery::class,
             ],
             'mutation' => [
-                'signOut'  => \App\GraphQL\Mutation\Auth\SignOutMutation::class,
+                'signOut'     => \App\GraphQL\Mutation\Auth\SignOutMutation::class,
                 'insertUser'  => \App\GraphQL\Mutation\Insert\InsertUserMutation::class,
+                'updateUser'  => \App\GraphQL\Mutation\Update\UpdateUserMutation::class
             ],
             'middleware' => ['auth:api'],
             'method'     => ['get', 'post'],
