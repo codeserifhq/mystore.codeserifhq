@@ -102,9 +102,21 @@ return [
                 'users' => \App\GraphQL\Query\UserQuery::class,
             ],
             'mutation' => [
-                // 'example_mutation'  => ExampleMutation::class,
+                'signIn'  => \App\GraphQL\Mutation\Auth\SignInMutation::class,
             ],
             'middleware' => [],
+            'method'     => ['get', 'post'],
+        ],
+        'secret' => [
+            'query' => [
+                'users' => \App\GraphQL\Query\UserQuery::class,
+            ],
+            'mutation' => [
+                'signOut'     => \App\GraphQL\Mutation\Auth\SignOutMutation::class,
+                'insertUser'  => \App\GraphQL\Mutation\Insert\InsertUserMutation::class,
+                'updateUser'  => \App\GraphQL\Mutation\Update\UpdateUserMutation::class
+            ],
+            'middleware' => ['auth:api'],
             'method'     => ['get', 'post'],
         ],
     ],
@@ -119,6 +131,7 @@ return [
     // ]
     //
     'types' => [
+        'accessToken'                  => \App\GraphQL\Type\AccessTokenType::class,
         'userAggregationType'              => \App\GraphQL\Type\UserAggregationType::class,
         'permissionAggregationType'        => \App\GraphQL\Type\PermissionAggregationType::class,
         'companyAggregationType'           => \App\GraphQL\Type\CompanyAggregationType::class,

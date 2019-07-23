@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Enums;
+
+use App\GraphQL\Type\Aggregates\BaseAggregateType;
+
+class {{aggregation}} extends BaseAggregateType
+{
+    protected $attributes = [
+        'name' => '{{aggregation}}',
+        'description' => '{{aggregationDescription}}'
+    ];
+
+    protected $type = '{{aggregationType}}';
+    protected $description = '{{aggregationTypeDescription}}';
+}

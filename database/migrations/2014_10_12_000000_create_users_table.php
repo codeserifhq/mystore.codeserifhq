@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
 
             $table->integer('company_id')->unsigned()->nullable();
+            $table->integer('created_by')->unsigned()->nullable();
 
             $table->string('name');
             $table->string('email')->unique();

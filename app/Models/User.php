@@ -81,4 +81,8 @@ class User extends BaseModel implements
         return false;
         
     }
+
+    public function OauthAcessToken(){
+        return $this->hasMany('\App\Models\OauthAccessToken');
+    }
 }

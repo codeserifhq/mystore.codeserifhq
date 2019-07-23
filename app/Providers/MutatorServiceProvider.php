@@ -13,7 +13,7 @@ class MutatorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('App\Contracts\Mutators\UserMutatorInterface', 'App\Mutators\UserMutator');
     }
 
     /**

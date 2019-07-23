@@ -6,7 +6,9 @@ use App\Models\PermissionSection;
 use App\Models\PermissionModule;
 use App\Models\Permission;
 
-class UserSectionPemissionSeeder extends Seeder
+use App\Enums\UserSectionPermissionAliasEnum;
+
+class UserSectionPermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,12 +23,13 @@ class UserSectionPemissionSeeder extends Seeder
 
         $permissionSection->sequence_number = $sequenceNumber;
         $permissionSection->name = "Users"; 
-        $permission->alias = "users_section";
-        $permission->save();
+        $permissionSection->alias = "users_section";
+        $permissionSection->save();
 
         $permissionModuleSequenceNumber = $permissionSection->permissionModules()->max('sequence_number') + 1;
         
         $permissionModule = new PermissionModule;
+        $permissionModule->permission_section_id = $permissionSection->id; 
         $permissionModule->sequence_number = $permissionModuleSequenceNumber;
         $permissionModule->name = "User Authentication";
         $permissionModule->alias = "user_authentication";
@@ -37,7 +40,7 @@ class UserSectionPemissionSeeder extends Seeder
         $viewPermission =  new Permission;
         $viewPermission->permission_module_id = $permissionModule->id;
         $viewPermission->name = "View Users";
-        $viewPermission->alias = "view_users";
+        $viewPermission->alias = UserSectionPermissionAliasEnum::VIEW_USER;
         $viewPermission->sequence_number = $permissionSequenceNumber;
         $viewPermission->save();
 
@@ -46,7 +49,7 @@ class UserSectionPemissionSeeder extends Seeder
         $createPermission =  new Permission;
         $createPermission->permission_module_id = $permissionModule->id;
         $createPermission->name = "Create Users";
-        $createPermission->alias = "create_users";
+        $createPermission->alias = UserSectionPermissionAliasEnum::CREATE_USER;
         $createPermission->sequence_number = $permissionSequenceNumber;
         $createPermission->save();
 
@@ -55,7 +58,7 @@ class UserSectionPemissionSeeder extends Seeder
         $editPermission =  new Permission;
         $editPermission->permission_module_id = $permissionModule->id;
         $editPermission->name = "Edit Users";
-        $editPermission->alias = "edit_users";
+        $editPermission->alias = UserSectionPermissionAliasEnum::EDIT_USER;
         $editPermission->sequence_number = $permissionSequenceNumber;
         $editPermission->save();
 
@@ -64,7 +67,7 @@ class UserSectionPemissionSeeder extends Seeder
         $deletePermission =  new Permission;
         $deletePermission->permission_module_id = $permissionModule->id;
         $deletePermission->name = "Delete Users";
-        $deletePermission->alias = "delete_users";
+        $deletePermission->alias = UserSectionPermissionAliasEnum::DELETE_USER;
         $deletePermission->sequence_number = $permissionSequenceNumber;
         $deletePermission->save();
     }

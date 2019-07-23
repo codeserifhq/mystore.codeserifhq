@@ -1,0 +1,16 @@
+<?php 
+
+namespace App\Repositories;
+
+use App\Models\{{model}};
+
+use App\Contracts\Repositories\{{interface}};
+use App\Repositories\BaseRepository;
+
+class {{repository}} extends BaseRepository implements {{interface}} {
+    
+    public function __construct({{model}} ${{modelVar}}) {
+        $this->model = ${{modelVar}};
+    }
+}
+
