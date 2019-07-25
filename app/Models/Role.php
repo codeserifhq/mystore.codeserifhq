@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\BaseModel;
+use App\Models\SystemCode;
 
-class Role extends BaseModel
+use App\Enums\SystemCodeTypeEnum;
+
+class Role extends SystemCode
 {
+    public function getType() {
+        return SystemCodeTypeEnum::DEPARTMENT;
+    }
+    
     public function company() {
         return $this->belongsTo('App\Models\Role');
     }
