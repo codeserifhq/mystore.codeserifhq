@@ -61,6 +61,10 @@ class User extends BaseModel implements
         return $this->belongsTo('App\Models\Company');
     }
 
+    public function role() {
+        return $this->belongsTo('App\Models\Role');
+    }
+
     public function partner() {
         return $this->hasOne('App\Models\Partner');
     }

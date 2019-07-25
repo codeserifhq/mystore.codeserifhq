@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
 
             $table->integer('company_id')->unsigned()->nullable();
             $table->integer('created_by')->unsigned()->nullable();
+            $table->bigInteger('role_id')->unsigned()->nullable();
 
             $table->string('name');
             $table->string('email')->unique();

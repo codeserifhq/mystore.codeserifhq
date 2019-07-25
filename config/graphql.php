@@ -164,7 +164,8 @@ return [
         'company'                          => \App\GraphQL\Type\CompanyType::class,
         'partner'                          => \App\GraphQL\Type\PartnerType::class,
         'permissionSection'                => \App\GraphQL\Type\PermissionSectionType::class,
-        'permissionModule'                 => \App\GraphQL\Type\PermissionModuleType::class, 
+        'permissionModule'                 => \App\GraphQL\Type\PermissionModuleType::class,
+        'role'                             => \App\GraphQL\Type\RoleType::class, 
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.
