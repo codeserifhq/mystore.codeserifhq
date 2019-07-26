@@ -24,6 +24,7 @@ class CreateStockInboundProductsTable extends Migration
 
             $table->double('quantity', 15, 5);
             $table->decimal('cost', 12,2);
+            $table->date('expiration_date')->nullable();
         });
     }
 

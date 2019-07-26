@@ -30,7 +30,6 @@ class CreateProductsTable extends Migration
             $table->integer('stock_to_alert');
             $table->mediumText('remarks')->nullable();
             $table->boolean('alert')->default(false);
-            $table->date('expiration_date')->nullable();
 
             $table->timestamps();
         });
